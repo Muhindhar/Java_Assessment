@@ -18,16 +18,12 @@ public class Ques3 {
         ResultSet rs = null;
 
         try {
-            // (a) Load Driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // (a) Establish Connection
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to LIBRARY Database");
 
             stmt = conn.createStatement();
 
-            // (b) Retrieve all BOOKS
             String booksQuery = "SELECT * FROM BOOKS";
             rs = stmt.executeQuery(booksQuery);
 
@@ -41,7 +37,6 @@ public class Ques3 {
                 );
             }
 
-            // 3.2 UPDATE fine_amount
             String updateQuery =
                     "UPDATE FINES f " +
                     "JOIN BORROWS b ON f.borrow_id = b.borrow_id " +
@@ -53,7 +48,6 @@ public class Ques3 {
             int rows = stmt.executeUpdate(updateQuery);
             System.out.println("\nRows Updated: " + rows);
 
-            // Display updated members
             String displayQuery =
                     "SELECT m.first_name, m.last_name, m.membership_type, " +
                     "b.status, f.fine_amount " +
@@ -79,7 +73,6 @@ public class Ques3 {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // (c) Close resources
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
