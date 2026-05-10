@@ -6,8 +6,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 
 public class Dao {
-
-    // 3.1 Retrieve all books
     public void getAllBooks() {
 
         try (Connection conn = DbConnection.getConnection();
@@ -28,12 +26,10 @@ public class Dao {
         }
     }
 
-    // 3.2 Update fine and display
     public void updateFine() {
 
         try (Connection conn = DbConnection.getConnection()) {
 
-            // UPDATE
             String updateQuery = "UPDATE members SET fine = 500 " +
                     "WHERE membership_type = 'Basic' AND status = 'Overdue'";
 
@@ -41,8 +37,7 @@ public class Dao {
             int rows = ps.executeUpdate();
 
             System.out.println("\nRows Updated: " + rows);
-
-            // SELECT updated records
+s
             String selectQuery = "SELECT firstname, lastname, membership_type, status, fine " +
                     "FROM members WHERE membership_type = 'Basic' AND status = 'Overdue'";
 
