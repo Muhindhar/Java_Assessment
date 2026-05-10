@@ -25,7 +25,6 @@ public class Crud {
 
             stmt = conn.createStatement();
 
-            // 3.1 Retrieve books
             String selectBooks = "SELECT * FROM book";
             rs = stmt.executeQuery(selectBooks);
 
@@ -36,9 +35,8 @@ public class Crud {
                                 rs.getString("title") + " | " +
                                 rs.getString("author")
                 );
-            }
 
-            // 3.2 Update fine
+            }
             String updateQuery =
                     "UPDATE members SET fine = 500 " +
                             "WHERE membership_type = 'Basic' AND status = 'Overdue'";
@@ -46,10 +44,7 @@ public class Crud {
             int rowsUpdated = stmt.executeUpdate(updateQuery);
             System.out.println("\nRows Updated: " + rowsUpdated);
 
-            // Display updated members
-            String displayQuery =
-                    "SELECT firstname, lastname, membership_type, status, fine " +
-                            "FROM members " +
+            String displayQuery = "SELECT firstname, lastname, membership_type, status, fine " +"FROM members " +
                             "WHERE membership_type = 'Basic' AND status = 'Overdue'";
 
             rs = stmt.executeQuery(displayQuery);
